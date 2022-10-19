@@ -1,16 +1,18 @@
 from dataclasses import dataclass
-from pyexpat import model
-
 from enum import Enum
 
 
 class CarColor(Enum):
+    """Enum for Car Colors"""
+
     YELLOW = "yellow"
     BLUE = "blue"
     GRAY = "gray"
 
 
 class CarModel(Enum):
+    """Enum for Car Models"""
+
     HATCH = "hatch"
     SEDAN = "sedan"
     CONVERTIBLE = "convertible"
@@ -18,6 +20,8 @@ class CarModel(Enum):
 
 @dataclass
 class Car:
+    """Domain Model of Car"""
+
     id: str
     name: str
     color: CarColor

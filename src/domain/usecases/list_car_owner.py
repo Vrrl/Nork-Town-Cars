@@ -1,4 +1,4 @@
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from abc import ABC, abstractmethod
 
@@ -11,7 +11,9 @@ class ListCarOwnerUseCase(ABC):
 
     # TODO: improve list filters
     @abstractmethod
-    def add(self, car_owner: CarOwner) -> Dict[bool, List[CarOwner]]:
+    def add(
+        self, limit: Optional[int] = 100, start: Optional[int] = 0
+    ) -> Dict[bool, List[CarOwner]]:
         """use case"""
 
         raise NotImplementedError()
