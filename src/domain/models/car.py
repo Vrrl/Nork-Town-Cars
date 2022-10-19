@@ -23,7 +23,6 @@ class Car:
     """Domain Model of Car"""
 
     id: str
-    name: str
     color: CarColor
     model: CarModel
     owner_id: str
