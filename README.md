@@ -11,10 +11,15 @@ Nork-Town is a weird place. Crows cawk the misty morning while old men squint. I
 Requirements
 
 ● Setup the dev environment with docker
+
 ○ Using docker-compose with as many volumes as it takes
+
 ● Use Python’s Flask framework and any other library
+
 ● Use any SQL database
+
 ● Secure routes
+
 ● Write tests
 </p>
 
