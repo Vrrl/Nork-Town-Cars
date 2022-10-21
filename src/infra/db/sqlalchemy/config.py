@@ -5,6 +5,10 @@ from typing import Union
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class DBConnectionHandler:
     """Sqlalchemy database connection"""
