@@ -31,48 +31,77 @@ Requirements
 What things you need to install the software and how to install them.
 
 ```
-Give examples
+Python 3.10+
+Python 3.6+ (Not Tested)
 ```
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running.
 
-Say what the step will be
+1. Get this project
 
 ```
-Give the example
+git clone https://github.com/Vrrl/Nork-Town-Cars.git
+cd Nork-Town-Cars
 ```
 
-And repeat
+2. Installing the dependences (virtualenv recommended)
 
 ```
-until finished
+pip install -r requirements.txt
+```
+3. Configure env file
+
+```
+cp .env.example .env
+
+# fill .env variables
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
+4. Run the server API
+
+```
+python server.py
+```
+
+5. Check if it is running with curl request
+
+```
+curl http://127.0.0.1:5000/hello-world
+
+# Hello World! The API is Running!
+```
 
 ## Running the tests
 
-Explain how to run the automated tests for this system.
+To run the Unit Tests with PyTest after installation run in the project folder
+
+```
+pytest -v
+```
 
 
 ### And coding style tests
 
-Explain what these tests test and why
+Test the code quality according to the pylint config file
 
 ```
-Give an example
+pylint src
 ```
 
 ## Usage
 
-Add notes about how to use the system.
-
+Load the Insomnia Workspace file "insomnia_routes_documentation.json" and make requests.
 
 ## Built Using 
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [Flask](https://flask.palletsprojects.com/) - Web Framework
+- [Sqlalchemy](https://www.sqlalchemy.org/) - Database ORM
+- [PyTest](https://pytest.org/) - Test Tools
+
+## Extra Todo's:
+
+[ ] System diagrams
+[ ] Car Owner & Car edit usecases
+[ ] Flask Framework tests (idk if Flask has an test SDK as FastAPI has)

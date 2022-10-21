@@ -15,3 +15,9 @@ app = Flask(__name__)
 CORS(app)
 
 app.register_blueprint(car_owner_routes_bp)
+
+
+@app.route("/hello-world")
+def hello_work():
+    """Hello World route"""
+    return "Hello World! The API is Running!"
