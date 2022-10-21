@@ -6,8 +6,8 @@ faker = Faker()
 car_owner_repository = CarOwnerRepository()
 
 
-def test_add_valid_car_owner_should_success():
-    """Should successfully add a new valid car owner"""
+def test_add_valid_car_owner_must_success():
+    """Must successfully add a new valid car owner"""
 
     name = faker.name()
 
