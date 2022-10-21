@@ -11,8 +11,8 @@ class ListCarOwnerUseCase(ABC):
 
     # TODO: improve list filters
     @abstractmethod
-    def add(
-        self, limit: Optional[int] = 100, start: Optional[int] = 0
+    def list(
+        self, limit: Optional[int] = 100, index: Optional[int] = 0
     ) -> Dict[bool, List[CarOwner]]:
         """use case"""
 

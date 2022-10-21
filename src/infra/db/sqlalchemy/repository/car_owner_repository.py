@@ -44,5 +44,34 @@ class CarOwnerRepository(
             finally:
                 db_connection.session.close()
 
-    def list(self):
-        ...
+    def list(
+        self, limit: Optional[int] = 100, index: Optional[int] = 0
+    ) -> List[CarOwner]:
+        """
+        list data in Car Owner entity
+        :param - limit: limit of entities
+                - index: starting index offset
+        :return - list of car owners
+        """
+
+        with DBConnectionHandler() as db_connection:
+            try:
+                query = db_connection.session.query(CarOwnerEntity)
+
+                # if name:
+                #     query = query.filter_by(name=name)
+
+                list_ = query.offset(index).limit(limit).all()
+
+                return [
+                    CarOwner(
+                        id=car_owner.id,
+                        name=car_owner.name,
+                    )
+                    for car_owner in list_
+                ]
+            except:
+                db_connection.session.rollback()
+                raise
+            finally:
+                db_connection.session.close()

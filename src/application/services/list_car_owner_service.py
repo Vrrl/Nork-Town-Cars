@@ -16,7 +16,7 @@ class ListCarOwnerService(ListCarOwnerUseCase):
         self.list_car_owners_repository = list_car_owners_repository
 
     def list(
-        self, limit: Optional[int] = 100, start: Optional[int] = 0
+        self, limit: Optional[int] = 100, index: Optional[int] = 0
     ) -> Dict[bool, List[CarOwner]]:
         """Add Input use case
         :param - limit(Optional): limit of objects.
@@ -26,10 +26,9 @@ class ListCarOwnerService(ListCarOwnerUseCase):
 
         response = None
 
-        # TODO: doesnt have validation yet, make one
-        validate_entry = True
+        validate_entry = isinstance(limit, int) and isinstance(index, int)
 
         if validate_entry:
-            response = self.list_car_owners_repository.list(limit, start)
+            response = self.list_car_owners_repository.list(limit, index)
 
         return {"Success": validate_entry, "Data": response}
