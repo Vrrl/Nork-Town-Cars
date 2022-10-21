@@ -102,6 +102,6 @@ Load the Insomnia Workspace file "insomnia_routes_documentation.json" and make r
 
 ## Extra Todo's:
 
-[ ] System diagrams
-[ ] Car Owner & Car edit usecases
-[ ] Flask Framework tests (idk if Flask has an test SDK as FastAPI has)
+- [ ] System diagrams
+- [ ] Car Owner & Car edit usecases
+- [ ] Flask Framework tests (idk if Flask has an test SDK as FastAPI has)
