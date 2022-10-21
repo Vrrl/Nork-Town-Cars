@@ -11,3 +11,8 @@ class BaseClass(object):
 
 
 Base = declarative_base(cls=BaseClass)
+
+
+def create_database(engine) -> None:
+    """Create database tables if not exist"""
+    Base.metadata.create_all(bind=engine)

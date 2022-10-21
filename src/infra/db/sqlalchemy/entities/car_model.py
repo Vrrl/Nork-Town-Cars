@@ -8,7 +8,7 @@ from sqlalchemy import (
     Enum,
 )
 
-from src.domain.models.car import CarColor, CarModel
+from src.domain.models import CarColor, CarModel, CarOwner
 
 from src.infra.db.sqlalchemy.base import Base
 
@@ -24,4 +24,4 @@ class Car(Base):
     model = Column(Enum(CarModel))
 
     owner_id = Column(String, ForeignKey("car_owners.id"))
-    owner = relationship("CarOnwer", back_populates="cars")
+    owner = relationship("CarOwner", back_populates="cars")

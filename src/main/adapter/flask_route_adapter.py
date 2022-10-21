@@ -1,19 +1,31 @@
-from typing import Type
+from flask import request as Request
+from flask import jsonify
 
 from src.presentation.interfaces.controller import ControllerInterface
-from src.presentation.helpers.http import HttpRequest, HttpResponse
+from src.presentation.helpers.http import HttpRequest
 
 
-def flask_adapter(request: any, api_controller: ControllerInterface) -> any:
+def flask_route_adapter(request: Request, api_controller: ControllerInterface) -> any:
     """Adapter pattern to Flask
-    :param - Flask Request
-    :api_route: Composite Routes
+    :param - request: Flask Request
+            - api_route: Composite Routes
     """
 
-    http_request = HttpRequest(
-        header=request.headers, body=request.json, query=request.args.to_dict()
-    )
+    header = request.headers
+    body = request.get_json(silent=True)
+    query = request.args.to_dict()
 
-    response = api_controller.route(http_request)
+    if not header:
+        header = {}
 
-    return response
+    if not body:
+        body = {}
+
+    if not query:
+        query = {}
+
+    http_request = HttpRequest(header=header, body=body, query=query)
+
+    response = api_controller.handle(http_request)
+
+    return jsonify(response.body), response.status_code

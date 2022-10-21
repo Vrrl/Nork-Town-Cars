@@ -1,0 +1,1 @@
+from .flask_route_adapter import flask_route_adapter

@@ -6,6 +6,9 @@ from sqlalchemy import (
     String,
 )
 
+from src.domain.models import Car
+
+
 from src.infra.db.sqlalchemy.base import Base
 
 
@@ -18,4 +21,4 @@ class CarOwner(Base):
 
     name = Column(String, nullable=False)
 
-    cars = relationship("Cars", back_populates="car")
+    cars = relationship("Car", back_populates="owner")

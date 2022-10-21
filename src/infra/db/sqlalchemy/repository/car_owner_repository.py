@@ -15,7 +15,7 @@ from src.infra.db.sqlalchemy.config import DBConnectionHandler
 from src.infra.db.sqlalchemy.entities import CarOwner as CarOwnerEntity
 
 
-class CarOwnerReporitory(
+class CarOwnerRepository(
     AddCarOwnerRepositoryInterface, ListCarOwnersRepositoryInterface
 ):
     """Class to manage Car Owner Repository"""
@@ -23,20 +23,26 @@ class CarOwnerReporitory(
     # pylint: disable=redefined-builtin
     def add(self, car_owner: AddCarOwnerModel) -> CarOwner:
         """
-        Insert data in PetsEntity entity
-        :param - name: name of the pet
-               - specie: Enum with species acepted
-               - age: pet age
-               - user_id: id of the owner (FK)
+        Insert data in Car Owner entity
+        :param - car_owner: Add Car Owner Model
         :return - tuple with new pet inserted
         """
 
         with DBConnectionHandler() as db_connection:
             try:
-                ...
+                new_car_owner = CarOwnerEntity(name=car_owner.name)
+                db_connection.session.add(new_car_owner)
+                db_connection.session.commit()
 
+                return CarOwner(
+                    id=new_car_owner.id,
+                    name=new_car_owner.name,
+                )
             except:
                 db_connection.session.rollback()
                 raise
             finally:
                 db_connection.session.close()
+
+    def list(self):
+        ...
