@@ -1,4 +1,3 @@
-from string import digits
 from faker import Faker
 
 from src.domain.usecases import AddCarOwnerModel
