@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from enum import Enum
 
 
-class CarColor(Enum):
+class CarColor(str, Enum):
     """Enum for Car Colors"""
 
     YELLOW = "yellow"
@@ -10,7 +10,7 @@ class CarColor(Enum):
     GRAY = "gray"
 
 
-class CarModel(Enum):
+class CarModel(str, Enum):
     """Enum for Car Models"""
 
     HATCH = "hatch"

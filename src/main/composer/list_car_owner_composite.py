@@ -4,9 +4,9 @@ from src.infra.db.sqlalchemy.repository import CarOwnerRepository
 
 
 def list_car_owner_composer() -> ListCarOwnerController:
-    """Composing Add Input Route
+    """Composing Add Car Route
     :param - None
-    :return - Object with List Input Controller
+    :return - Object with List Car Controller
     """
 
     repository = CarOwnerRepository()

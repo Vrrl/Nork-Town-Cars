@@ -4,7 +4,7 @@ from src.domain.usecases import AddCarUseCase, AddCarModel
 
 from src.application.interfaces.repository import AddCarRepositoryInterface
 
-from src.domain.models import Car
+from src.domain.models import Car, CarColor, CarModel
 
 
 class AddCarService(AddCarUseCase):
@@ -23,8 +23,12 @@ class AddCarService(AddCarUseCase):
 
         response = None
 
-        # TODO: doesnt have validation yet, make one
-        validate_entry = True
+        validate_entry = (
+            isinstance(car.owner_id, str)
+            and car.owner_id is not None
+            and isinstance(car.color, CarColor)
+            and isinstance(car.model, CarModel)
+        )
 
         if validate_entry:
             response = self.add_car_repository.add(car)

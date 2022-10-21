@@ -11,7 +11,6 @@ from src.domain.models import Car, CarColor, CarModel
 class AddCarModel:
     """Model for Add Car Usecase"""
 
-    name: str
     color: CarColor
     model: CarModel
     owner_id: str
