@@ -25,8 +25,9 @@ class AddCarOwnerService(AddCarOwnerUseCase):
 
         response = None
 
-        # TODO: doesnt have validation yet, make one
-        validate_entry = True
+        # Here we can also validate if already has car owner with this name
+        # Name validation
+        validate_entry = isinstance(car_owner.name, str) and car_owner.name is not None
 
         if validate_entry:
             response = self.add_car_owner_repository.add(car_owner)
