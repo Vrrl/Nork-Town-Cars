@@ -92,7 +92,7 @@ pylint src
 
 ## Usage
 
-Load the Insomnia Workspace file "insomnia_routes_documentation.json" and make requests.
+Load the Insomnia Collection file "insomnia_routes_collection" and make requests.
 
 ## Built Using 
 
@@ -103,5 +103,5 @@ Load the Insomnia Workspace file "insomnia_routes_documentation.json" and make r
 ## Extra Todo's:
 
 - [ ] System diagrams
-- [ ] Car Owner & Car edit usecases
+- [ ] Car Owner & Car edit/delete usecases
 - [ ] Flask Framework tests (idk if Flask has an test SDK as FastAPI has)
