@@ -39,12 +39,14 @@ Python 3.6+ (Not Tested)
 
 A step by step series of examples that tell you how to get a development env running.
 
+
 1. Get this project
 
 ```
 git clone https://github.com/Vrrl/Nork-Town-Cars.git
 cd Nork-Town-Cars
 ```
+##### Without Docker
 
 2. Installing the dependences (virtualenv recommended)
 
@@ -72,6 +74,29 @@ curl http://127.0.0.1:5000/hello-world
 
 # Hello World! The API is Running!
 ```
+##### With Docker
+
+2. building the container
+
+```
+docker build -t nork-town-cars .
+```
+
+3. running the container
+
+```
+docker run -p 3567:3567 -d --hostname=supertokens --network=host registry.supertokens.io/supertokens/supertokens-postgresql
+
+docker run -e DATABASE_CONNECTION_STRING=sqlite:///./test.db -e SUPERTOKENS_CONNECTION_URI=http://supertokens:3567 --network=host -p 80:5000 nork-town-cars
+```
+
+##### With Docker Compose (recommended)
+
+2. build & run
+
+```
+docker-compose up -d
+```
 
 ## Running the tests
 
@@ -98,6 +123,7 @@ Load the Insomnia Collection file "insomnia_routes_collection" and make requests
 
 - [Flask](https://flask.palletsprojects.com/) - Web Framework
 - [Sqlalchemy](https://www.sqlalchemy.org/) - Database ORM
+- [SuperTokens](https://supertokens.com/) - Auth Provider
 - [PyTest](https://pytest.org/) - Test Tools
 
 ## Extra Todo's:
