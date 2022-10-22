@@ -101,7 +101,9 @@ Load the Insomnia Collection file "insomnia_routes_collection" and make requests
 - [PyTest](https://pytest.org/) - Test Tools
 
 ## Extra Todo's:
+Things that will make the project better in my opnion, but it's not necessary
 
+- [ ] Segregate supertokens from flask by applying directly in usecases 
 - [ ] System diagrams
 - [ ] Car Owner & Car edit/delete usecases
 - [ ] Flask Framework tests (idk if Flask has an test SDK as FastAPI has)
