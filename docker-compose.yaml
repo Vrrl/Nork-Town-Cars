@@ -1,0 +1,59 @@
+version: '3'
+services:
+  api:
+    hostname: nork-town-cars
+    build:
+      context: ./
+      dockerfile: dockerfile
+    depends_on:
+      - postgres
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/code
+    networks:
+      - nork-town-cars
+    restart: unless-stopped
+    ports:
+        - 80:5000
+    environment:
+      DATABASE_CONNECTION_STRING: postgresql://postgres:postgres@postgres:5432/
+      SUPERTOKENS_CONNECTION_URI: http://supertokens:3567
+
+
+  supertokens:
+    image: registry.supertokens.io/supertokens/supertokens-postgresql
+    restart: always
+    hostname: supertokens
+    ports:
+      - '3567:3567'
+    networks:
+        - nork-town-cars
+
+  postgres:
+    image: postgres:14.1-alpine
+    restart: always
+    hostname: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    networks:
+        - nork-town-cars
+      
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:81"
+    networks:
+        - nork-town-cars
+
+networks: 
+  nork-town-cars:
+    driver: bridge
+

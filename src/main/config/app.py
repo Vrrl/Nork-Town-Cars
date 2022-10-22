@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, abort
 from flask_cors import CORS
 
@@ -25,7 +27,9 @@ init(
         website_base_path="/auth",
     ),
     supertokens_config=SupertokensConfig(
-        connection_uri="http://localhost:3567",
+        connection_uri=os.environ.get(
+            "SUPERTOKENS_CONNECTION_URI", "http://localhost:3567"
+        ),
         # api_key="key"
     ),
     framework="flask",
@@ -50,7 +54,7 @@ app.register_blueprint(sales_routes_bp)
 @app.route("/hello-world")
 def hello_work():
     """Hello World route"""
-    return "Hello World! The API is Running!"
+    return "Hello World! The API is Running! and docker too"
 
 
 # This is required since if this is not there, then OPTIONS requests for
