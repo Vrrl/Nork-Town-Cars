@@ -10,7 +10,7 @@ class ListCarOwnersRepositoryInterface(ABC):
 
     @abstractmethod
     def list(
-        self, limit: Optional[int] = 100, index: Optional[int] = 0
+        self, has_cars: int, limit: Optional[int] = 100, index: Optional[int] = 0
     ) -> List[CarOwner]:
         """abstractmethod"""
 

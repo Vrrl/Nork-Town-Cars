@@ -23,6 +23,8 @@ class AddCarService(AddCarUseCase):
 
         response = None
 
+        # TODO: CHECK IF OWNER EXIST
+
         validate_entry = (
             isinstance(car.owner_id, str)
             and car.owner_id is not None

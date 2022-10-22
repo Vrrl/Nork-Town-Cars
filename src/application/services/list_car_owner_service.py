@@ -29,6 +29,6 @@ class ListCarOwnerService(ListCarOwnerUseCase):
         validate_entry = isinstance(limit, int) and isinstance(index, int)
 
         if validate_entry:
-            response = self.list_car_owners_repository.list(limit, index)
+            response = self.list_car_owners_repository.list(limit=limit, index=index)
 
         return {"Success": validate_entry, "Data": response}

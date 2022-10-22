@@ -12,3 +12,10 @@ def register_car():
     """register car route"""
 
     return flask_route_adapter(request=request, api_controller=add_car_composer())
+
+
+@car_routes_bp.route("/", methods=["GET"])
+def list_car():
+    """list car route"""
+
+    return

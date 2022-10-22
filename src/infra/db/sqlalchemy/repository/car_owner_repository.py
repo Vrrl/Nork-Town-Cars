@@ -1,5 +1,7 @@
 from typing import List, Optional
 
+from sqlalchemy import func
+
 # from sqlalchemy.orm.exc import NoResultFound
 
 from src.application.interfaces.repository import (
@@ -13,6 +15,7 @@ from src.domain.models import CarOwner
 
 from src.infra.db.sqlalchemy.config import DBConnectionHandler
 from src.infra.db.sqlalchemy.entities import CarOwner as CarOwnerEntity
+from src.infra.db.sqlalchemy.entities import Car as CarEntity
 
 
 class CarOwnerRepository(
@@ -45,11 +48,15 @@ class CarOwnerRepository(
                 db_connection.session.close()
 
     def list(
-        self, limit: Optional[int] = 100, index: Optional[int] = 0
+        self,
+        has_cars: bool = True,
+        limit: Optional[int] = 100,
+        index: Optional[int] = 0,
     ) -> List[CarOwner]:
         """
         list data in Car Owner entity
-        :param - limit: limit of entities
+        :param - max_cars: maximun cars of the car owner
+                - limit: limit of entities
                 - index: starting index offset
         :return - list of car owners
         """
@@ -58,8 +65,15 @@ class CarOwnerRepository(
             try:
                 query = db_connection.session.query(CarOwnerEntity)
 
-                # if name:
-                #     query = query.filter_by(name=name)
+                # TODO: IMPORTANT LOGIC REFAC
+                # as the project requirements is to filter by car owner without cars,
+                # the choise made was to make a filter by number of cars but i got trouble by making with `having`
+                # sqlalchemy statement idkw and i ended up creating just a filter for car owner that doesnt have car that works.
+                # the current project purpose doesnt require this refactor as it works as it need but
+                # it will be better with propely logic refactor
+                if not has_cars:
+                    # pylint: disable=singleton-comparison
+                    query = query.filter(CarOwnerEntity.cars == None)
 
                 list_ = query.offset(index).limit(limit).all()
 

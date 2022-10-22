@@ -16,7 +16,7 @@ class ListSalesOportunityService(ListSalesOpportunityUseCase):
         self.list_car_owners_repository = list_car_owners_repository
 
     def list(
-        self, limit: Optional[int] = 100, start: Optional[int] = 0
+        self, limit: Optional[int] = 100, index: Optional[int] = 0
     ) -> Dict[bool, List[CarOwner]]:
         """Add Input use case
         :param - limit(Optional): limit of objects.
@@ -30,7 +30,8 @@ class ListSalesOportunityService(ListSalesOpportunityUseCase):
         validate_entry = True
 
         if validate_entry:
-            # TODO: Filter by car owners without cars
-            response = self.list_car_owners_repository.list(limit, start)
+            response = self.list_car_owners_repository.list(
+                has_cars=False, limit=limit, index=index
+            )
 
         return {"Success": validate_entry, "Data": response}

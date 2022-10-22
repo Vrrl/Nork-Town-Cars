@@ -7,16 +7,16 @@ from src.presentation.helpers import HttpRequest, HttpResponse
 
 from src.presentation.interfaces import ControllerInterface
 
-from src.domain.usecases import ListCarOwnerUseCase
+from src.domain.usecases import ListSalesOpportunityUseCase
 
 
-class ListCarOwnerController(ControllerInterface):
-    """List Car Owner Controller"""
+class ListSalesOpportunityController(ControllerInterface):
+    """list Car Sales Controller"""
 
-    list_car_onwer_use_case: ListCarOwnerUseCase
+    list_sales_opportunity_use_case: ListSalesOpportunityUseCase
 
-    def __init__(self, list_car_onwer_use_case: ListCarOwnerUseCase):
-        self.list_car_onwer_use_case = list_car_onwer_use_case
+    def __init__(self, list_sales_opportunity_use_case: ListSalesOpportunityUseCase):
+        self.list_sales_opportunity_use_case = list_sales_opportunity_use_case
 
     def handle(self, http_request: HttpRequest) -> HttpResponse:
         """Handle route to add car owner use case"""
@@ -47,7 +47,7 @@ class ListCarOwnerController(ControllerInterface):
 
         # Handle
         try:
-            response = self.list_car_onwer_use_case.list(
+            response = self.list_sales_opportunity_use_case.list(
                 index=http_request.query["page"], limit=http_request.query["limit"]
             )
 
